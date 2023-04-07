@@ -1,0 +1,99 @@
+import React, { useState } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faThumbsUp, faUser } from '@fortawesome/free-solid-svg-icons';
+import ReplyComment from './ReplyComment';
+import Link from 'antd/es/typography/Link';
+import SingleReply from './SingleReply';
+
+
+const SingleComment = ({ singleCmnt }) => {
+    const { commentId, commentText, postId, reply } = singleCmnt;
+    // console.log(singleCmnt)
+    // console.log(reply);
+
+    const [isLike, setIsLike] = useState(false);
+    const [isReplying, setIsReplying] = useState(false);
+
+    return (
+        <div className='single_comment'>
+            <div className='user_profile'><FontAwesomeIcon className='profile_icon' icon={faUser} /></div>
+            <div className='comment_body'>
+                <p className='single_comment_text'>{commentText}
+                    {
+                        isLike &&
+                        <span className='single_comment_like'><FontAwesomeIcon className='single_comment_like_icon' icon={faThumbsUp} /></span>
+                    }
+                </p>
+                <div>
+                    <button className='like_reply_btn' onClick={() => setIsLike(!isLike)}>Like</button>
+                    {
+                        isReplying ?
+                            <button className='like_reply_btn' onClick={() => setIsReplying(!isReplying)}>Cancel</button>
+                            :
+                            <button className='like_reply_btn' onClick={() => setIsReplying(!isReplying)}>Replyme</button>
+                    }
+                    {/* comment-reply */}
+                    {
+                        isReplying && <SingleReply />
+                    }
+                </div>
+                <div className='reply-show'>
+                    {
+                        reply &&
+                        reply.map((replies) => <ReplyComment replies={replies} key={replies.replyId}></ReplyComment>)
+                    }
+                </div>
+            </div>
+        </div>
+    )
+}
+
+export default SingleComment
+
+
+
+
+
+
+
+
+
+// import React, { useState } from 'react';
+// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+// import { faThumbsUp, faUser } from '@fortawesome/free-solid-svg-icons';
+// import ReplyComment from './ReplyComment';
+// import Link from 'antd/es/typography/Link';
+
+
+// const SingleComment = ({ singleCmnt }) => {
+//     const { commentId, commentText, postId, reply } = singleCmnt;
+//     // console.log(singleCmnt)
+//     console.log(reply);
+//     const [isLike, setIsLike] = useState(false);
+
+
+//     return (
+//         <div className='single_comment'>
+//             <div className='user_profile'><FontAwesomeIcon className='profile_icon' icon={faUser} /></div>
+//             <div className='comment_body'>
+//                 <p className='single_comment_text'>{commentText}
+//                     {
+//                         isLike &&
+//                         <span className='single_comment_like'><FontAwesomeIcon className='single_comment_like_icon' icon={faThumbsUp} /></span>
+//                     }
+//                 </p>
+//                 <div>
+//                     <button className='like_reply_btn' onClick={() => setIsLike(!isLike)}>Like</button>
+//                     <button className='like_reply_btn'>Reply</button>
+//                 </div>
+
+//                 {
+//                     reply &&
+//                     reply.map((replies) => <ReplyComment replies={replies} key={replies.replyId}></ReplyComment>)
+//                 }
+//             </div>
+//         </div>
+//     )
+// }
+
+// export default SingleComment
