@@ -2,8 +2,7 @@ import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faThumbsUp, faUser } from '@fortawesome/free-solid-svg-icons';
 import ReplyComment from './ReplyComment';
-import Link from 'antd/es/typography/Link';
-import SingleReply from './SingleReply';
+import AddSingleReply from './AddSingleReply';
 
 
 const SingleComment = ({ singleCmnt }) => {
@@ -25,7 +24,7 @@ const SingleComment = ({ singleCmnt }) => {
                     }
                 </p>
                 <div>
-                    <button className='like_reply_btn' onClick={() => setIsLike(!isLike)}>Like</button>
+                    <button className='like_reply_btn' onClick={() => setIsLike(!isLike)} style={isLike ? { color: '#1677ff' } : { color: '#67656B' }}>Like</button>
                     {
                         isReplying ?
                             <button className='like_reply_btn' onClick={() => setIsReplying(!isReplying)}>Cancel</button>
@@ -34,7 +33,7 @@ const SingleComment = ({ singleCmnt }) => {
                     }
                     {/* comment-reply */}
                     {
-                        isReplying && <SingleReply />
+                        isReplying && <AddSingleReply/>
                     }
                 </div>
                 <div className='reply-show'>

@@ -6,6 +6,8 @@ import Comments from './Comments';
 import { useDispatch } from 'react-redux';
 import { likeCountIncrement, likeCountDecrement } from './PostSlice.js';
 
+
+
 const SinglePost = ({ post }) => {
     const { id, postText, comments, likeCount, disabled } = post;
     // console.log(post);
@@ -17,7 +19,7 @@ const SinglePost = ({ post }) => {
         if (!disabled) {
             dispatch(likeCountIncrement(id));
         }
-        else {
+        if (disabled) {
             dispatch(likeCountDecrement(id));
         }
     }
@@ -28,7 +30,7 @@ const SinglePost = ({ post }) => {
 
 
     return (
-        <div className='single_post'>
+        <div className='single_post' key={id}>
             <div className='single_post_text_content'>
                 <p>{postText}</p>
                 <EditPost post={post}></EditPost>

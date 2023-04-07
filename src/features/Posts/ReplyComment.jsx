@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faThumbsUp, faUser } from '@fortawesome/free-solid-svg-icons';
-import SingleReply from './SingleReply';
 
 
 const ReplyComment = (props) => {
@@ -21,7 +20,7 @@ const ReplyComment = (props) => {
                     }
                 </p>
                 <div>
-                    <button className='like_reply_btn' onClick={() => setIsLike(!isLike)}>Like</button>
+                    <button className='like_reply_btn' onClick={() => setIsLike(!isLike)} style={isLike ? { color: '#1677ff' } : { color: '#67656B' }}>Like</button>
                     <button className='like_reply_btn'>Reply</button>
                 </div>
             </div>

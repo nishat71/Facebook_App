@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { v4 as uuidv4 } from 'uuid';
 import { addPosts } from './PostSlice';
 
+
 const AddPost = () => {
     const [newPosts, setNewPosts] = useState("");
     const dispatch = useDispatch();
@@ -13,7 +14,7 @@ const AddPost = () => {
         e.preventDefault();
 
         // const post = { id: noOfPost + 1, postText: newPosts, comments: [] }
-        const post = { id: uuidv4(), postText: newPosts, comments: [] };
+        const post = { id: uuidv4(), postText: newPosts, comments: [], likeCount: 0, disabled: false };
         dispatch(addPosts(post));
         setNewPosts('');
     }
